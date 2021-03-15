@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_resin"
+        android:icon="@drawable/resin"
+        android:title="Resin" />
+
+    <item
+        android:id="@+id/navigation_maps"
+        android:icon="@drawable/maps"
+        android:title="Maps" />
+
+    <item
+        android:id="@+id/navigation_stamina"
+        android:icon="@drawable/stamina"
+        android:title="Stamina" />
+
+</menu>

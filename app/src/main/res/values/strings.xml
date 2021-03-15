@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Resin-Ku</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="resin_fragment">Resin</string>
+    <string name="maps_fragment">Maps</string>
+    <string name="stamina_fragment">Stamina</string>
+</resources>
