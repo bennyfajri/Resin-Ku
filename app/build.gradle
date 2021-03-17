@@ -45,4 +45,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.android.support:design:29.0.0'
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
+    apply plugin: 'com.android.application'
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-android-extensions'
+    implementation 'com.android.support:preference-v7:29.1.0'
+    compile 'com.pavelsikun:material-seekbar-preference:2.3.0'
+
+
 }
