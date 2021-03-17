@@ -7,12 +7,17 @@ import com.benny.resin_ku.Fragment_Resin
 class UtilResin {
     companion object {
 
-        private const val TIMER_LENGTH_ID = "com.benny.resin.timer_length"
-        fun getTimerLengt(context: Context?): Int{
+        private const val TIMER_LENGTH_ID = "com.benny.timer.timer_length"
+        fun getTimerLengt(context: Context?): Long{
             val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-            return preferences.getInt(TIMER_LENGTH_ID, 10)
+            return preferences.getLong(TIMER_LENGTH_ID, 10)
         }
 
+        fun setTimerLength(seconds: Long, context: Context?){
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(TIMER_LENGTH_ID, seconds)
+            editor.apply()
+        }
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.benny.resin.previous_timer_length"
 
         fun getPreviousTimerLengthSeconds(context: Context?): Long{

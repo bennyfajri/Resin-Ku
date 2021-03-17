@@ -27,7 +27,7 @@ class Fragment_Resin : Fragment() {
         }
 
         fun setAlarm(context: Context?, nowSecond: Long, secondsRemaining: Long): Long{
-            val wakeUpTime = (nowSecond + secondsRemaining) * 1000
+            val wakeUpTime = (nowSecond + secondsRemaining) * 60000
             val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val intent = Intent(context, ResinExpireReceiver::class.java )
             val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
@@ -40,17 +40,17 @@ class Fragment_Resin : Fragment() {
             val pendingIntent = PendingIntent.getBroadcast(context, 0,intent,0)
             val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             alarmManager.cancel(pendingIntent)
-            UtilResin.setAlarmSetTime(0, context)
+            UtilResin.setAlarmSetTime( 0, context)
         }
         val nowSeconds: Long
-            get() = Calendar.getInstance().timeInMillis / 1000
-
+            get() = Calendar.getInstance().timeInMillis / 60000
     }
 
     enum class ResinState{
         Stopped,Running
     }
 
+    private var jumlahResin = 0L
     private lateinit var timer: CountDownTimer
     private var r_waktu_detik = 0L
     private var r_state =  ResinState.Stopped
@@ -66,6 +66,9 @@ class Fragment_Resin : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rsn_btnSubmit.setOnClickListener { v ->
+            jumlahResin = inputResin.text.toString().toLong()
+            UtilResin.setTimerLength(jumlahResin,context)
+            setNewTimerLength()
             startTimer()
             r_state = ResinState.Running
             updateButtons()
@@ -75,11 +78,6 @@ class Fragment_Resin : Fragment() {
             timer.cancel()
             onTimerFinished()
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
     }
 
     override fun onResume() {
@@ -100,8 +98,8 @@ class Fragment_Resin : Fragment() {
 //            ResinNotificationUtil.showResinRunning(context, wakeUpTime)
         }
         UtilResin.setPreviousTimerLengthSeconds(r_waktu_detik, context)
-        UtilResin.setSecondsRemaining(secondsRemaining, context)
-        UtilResin.setTimerState(r_state, context!!)
+        UtilResin.setSecondsRemaining(secondsRemaining+1, context)
+        UtilResin.setTimerState(r_state, context)
     }
 
     private fun initTimer() {
@@ -147,19 +145,19 @@ class Fragment_Resin : Fragment() {
     private fun startTimer() {
         r_state = ResinState.Running
 
-        timer = object  : CountDownTimer(secondsRemaining * 1000, 1000){
+        timer = object  : CountDownTimer(secondsRemaining * 60000, 60000){
             override fun onTick(millisUntilFinished: Long) {
-                secondsRemaining = millisUntilFinished / 1000
+                secondsRemaining = millisUntilFinished / 60000
                 updateCountdownUI()
             }
-
             override fun onFinish() = onTimerFinished()
         }.start()
     }
 
     private fun setNewTimerLength() {
-        val lengthInMinutes = UtilResin.getTimerLengt(context)
-        r_waktu_detik = (lengthInMinutes * 60L)
+        val waktuResin = UtilResin.getTimerLengt(context) * 8
+        var lengthInMinutes = (160 * 8) - waktuResin
+        r_waktu_detik = lengthInMinutes
         progress_resin.max = r_waktu_detik.toInt()
     }
 
