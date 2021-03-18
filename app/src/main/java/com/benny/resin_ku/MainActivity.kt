@@ -12,19 +12,23 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_resin -> {
+                this.supportActionBar?.setTitle("Resin")
                 val fragment = Fragment_Resin.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_maps -> {
+                this.supportActionBar?.setTitle("Maps")
                 val fragment = Fragment_Maps.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_stamina -> {
+                this.supportActionBar?.setTitle("Stamina")
                 val fragment = Fragment_Stamina.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
+
             }
         }
         false
@@ -40,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.supportActionBar?.setTitle("Resin")
         val navigation: BottomNavigationView = findViewById(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val fragment = Fragment_Resin.newInstance()
