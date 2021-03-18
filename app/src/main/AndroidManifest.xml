@@ -10,9 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ResinKu">
         <receiver
+            android:name=".ResinNotificationActionReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="dismiss"/>
+                <action android:name="stop"/>
+            </intent-filter>
+        </receiver>
+        <receiver
             android:name=".ResinExpireReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

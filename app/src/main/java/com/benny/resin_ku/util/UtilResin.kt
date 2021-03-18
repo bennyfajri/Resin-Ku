@@ -31,6 +31,19 @@ class UtilResin {
             editor.apply()
         }
 
+        private const val PREVIOUS_RESIN_REMAINING = "com.benny.resin.resin_remaining"
+
+        fun getPreviousResinRemaining(context: Context?): Long{
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return  preferences.getLong(PREVIOUS_RESIN_REMAINING, 0)
+        }
+
+        fun setPreviousResinRemaining(resin: Long, context: Context?){
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(PREVIOUS_RESIN_REMAINING, resin)
+            editor.apply()
+        }
+
         private const val TIMER_STATE_ID = "com.benny.resin.timer_state"
 
         fun getTimerState(context: Context?): Fragment_Resin.ResinState{
@@ -57,6 +70,19 @@ class UtilResin {
         fun setSecondsRemaining(seconds: Long, context: Context?){
             val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
             editor.putLong(SECONDS_REMAINING_ID, seconds)
+            editor.apply()
+        }
+
+        private const val RESIN_REMAINING_ID = "com.benny.resin.resin_remaining"
+
+        fun getResinRemaining(context: Context?): Long{
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return  preferences.getLong(RESIN_REMAINING_ID, 0)
+        }
+
+        fun setResinRemaining(seconds: Long, context: Context?){
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(RESIN_REMAINING_ID, seconds)
             editor.apply()
         }
 

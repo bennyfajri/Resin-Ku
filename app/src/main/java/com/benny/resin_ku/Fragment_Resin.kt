@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import com.benny.resin_ku.util.ResinNotificationUtil
+import com.benny.resin_ku.util.ResinNotificationUtil
 import com.benny.resin_ku.util.UtilResin
 import kotlinx.android.synthetic.main.fragment_resin.*
 import java.util.*
@@ -86,7 +86,7 @@ class Fragment_Resin : Fragment() {
         initTimer()
 
         removeAlarm(context)
-//        ResinNotificationUtil.hideTimerNotification(context)
+        ResinNotificationUtil.hideTimerNotification(context)
     }
 
     override fun onPause() {
@@ -95,7 +95,7 @@ class Fragment_Resin : Fragment() {
         if(r_state == ResinState.Running){
             timer.cancel()
             val wakeUpTime = setAlarm(context, nowSeconds, secondsRemaining)
-//            ResinNotificationUtil.showResinRunning(context, wakeUpTime)
+            ResinNotificationUtil.showResinRunning(context, wakeUpTime)
         }
         UtilResin.setPreviousTimerLengthSeconds(r_waktu_detik, context)
         UtilResin.setSecondsRemaining(secondsRemaining+1, context)
@@ -146,12 +146,14 @@ class Fragment_Resin : Fragment() {
         r_state = ResinState.Running
 
         timer = object  : CountDownTimer(secondsRemaining * 60000, 60000){
+            override fun onFinish() = onTimerFinished()
+
             override fun onTick(millisUntilFinished: Long) {
                 secondsRemaining = millisUntilFinished / 60000
                 updateCountdownUI()
             }
-            override fun onFinish() = onTimerFinished()
         }.start()
+
     }
 
     private fun setNewTimerLength() {
