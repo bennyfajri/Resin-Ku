@@ -23,7 +23,8 @@ class ResinNotificationUtil {
     companion object{
         private const val CHANNEL_ID_TIMER = "menu_resin"
         private const val CHANNEL_NAME_TIMER = "Time Resin Timer"
-        private const val RESIN_ID = 0
+        var rnds = (1..1000).random()
+        private var RESIN_ID = rnds
 
         fun showResinExpired(context: Context?){
             val startIntent = Intent(context, ResinNotificationActionReceiver::class.java)
