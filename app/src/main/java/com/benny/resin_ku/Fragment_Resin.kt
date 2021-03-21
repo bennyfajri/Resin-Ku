@@ -6,10 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.benny.resin_ku.util.ResinNotificationUtil
 import com.benny.resin_ku.util.UtilResin
 import kotlinx.android.synthetic.main.fragment_resin.*
@@ -65,10 +67,23 @@ class Fragment_Resin : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        rsn_btnSet.setOnClickListener { v ->
+            val inputResin1 = inputResin.text.toString()
+            if(inputResin1.equals("") || TextUtils.isEmpty(inputResin1) || inputResin1.length == 0){
+                Toast.makeText(context, "Fill last resin first", Toast.LENGTH_LONG).show()
+            }else{
+                jumlahResin = activity?.inputResin?.text.toString().toLong()
+                UtilResin.setTimerLength(jumlahResin,context)
+                setNewTimerLength()
+
+                UtilResin.setSecondsRemaining(r_waktu_detik, context)
+                secondsRemaining = r_waktu_detik
+
+                updateCountdownUI()
+                updateButtons()
+            }
+        }
         rsn_btnSubmit.setOnClickListener { v ->
-            jumlahResin = inputResin.text.toString().toLong()
-            UtilResin.setTimerLength(jumlahResin,context)
-            setNewTimerLength()
             startTimer()
             r_state = ResinState.Running
             updateButtons()
@@ -121,8 +136,9 @@ class Fragment_Resin : Fragment() {
 
         if(secondsRemaining <= 0)
             onTimerFinished()
-        else if (r_state == ResinState.Running)
+        else if(r_state == ResinState.Running)
             startTimer()
+
 
         updateButtons()
         updateCountdownUI()
@@ -181,10 +197,12 @@ class Fragment_Resin : Fragment() {
     private fun updateButtons() {
         when(r_state){
             ResinState.Running -> {
+                rsn_btnSet.isEnabled = false
                 rsn_btnSubmit.isEnabled = false
                 rsn_btnReset.isEnabled = true
             }
             ResinState.Stopped -> {
+                rsn_btnSet.isEnabled = true
                 rsn_btnSubmit.isEnabled = true
                 rsn_btnReset.isEnabled = false
             }
