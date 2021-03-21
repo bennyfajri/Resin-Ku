@@ -77,14 +77,31 @@
                 android:layout_marginStart="4dp"
                 android:text="Last stamina" />
 
-            <EditText
-                android:id="@+id/inputStamina"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="XX"
-                android:inputType="number"
-                android:textColor="@color/black"/>
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/inputStamina"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="240dp"
+                    android:layout_height="40dp"
+                    android:hint="XX"
+                    android:inputType="number"
+                    android:textColor="@color/black"/>
+
+                <Button
+                    android:id="@+id/stm_btnSet"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="60dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="set"
+                    android:textSize="12sp"
+                    android:layout_gravity="end"/>
+            </FrameLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"

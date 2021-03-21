@@ -6,10 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.benny.resin_ku.util.StaminaNotificationUtil
 import com.benny.resin_ku.util.UtilStamina
 import kotlinx.android.synthetic.main.fragment__stamina.*
@@ -67,13 +69,26 @@ class Fragment_Stamina : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        stm_btnSet.setOnClickListener { v ->
+            val inputStamina1 = inputStamina.text.toString()
+            if(inputStamina1.equals("") || TextUtils.isEmpty(inputStamina1) || inputStamina1.length == 0){
+                Toast.makeText(context,"Fill last stamina  first", Toast.LENGTH_LONG).show()
+            }else{
+                jumlahStamina = inputStamina.text.toString().toLong()
+                UtilStamina.setTimeLength(jumlahStamina,context)
+                setNewTimerLength()
+
+                UtilStamina.setSecondRemaining(s_waktu_detik, context)
+                secondsRemaining = s_waktu_detik
+
+                updateCountdownUI()
+                updateButtons()
+            }
+        }
         stm_btnSubmit.setOnClickListener { v ->
-            jumlahStamina = inputStamina.text.toString().toLong()
-            UtilStamina.setTimeLength(jumlahStamina,context)
-            setNewTimerLength()
-            startTimer()
-            s_state = Fragment_Stamina.StaminaState.Running
-            updateButtons()
+                startTimer()
+                s_state = Fragment_Stamina.StaminaState.Running
+                updateButtons()
         }
 
         stm_btnReset.setOnClickListener { v ->
@@ -183,10 +198,12 @@ class Fragment_Stamina : Fragment() {
     private fun updateButtons() {
         when(s_state){
             StaminaState.Running -> {
+                stm_btnSet.isEnabled = false
                 stm_btnSubmit.isEnabled = false
                 stm_btnReset.isEnabled = true
             }
             StaminaState.Stopped -> {
+                stm_btnSet.isEnabled = true
                 stm_btnSubmit.isEnabled = true
                 stm_btnReset.isEnabled = false
             }
