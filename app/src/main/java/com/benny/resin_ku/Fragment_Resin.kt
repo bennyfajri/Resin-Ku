@@ -55,9 +55,11 @@ class Fragment_Resin : Fragment() {
     private var jumlahResin = 0L
     private lateinit var timer: CountDownTimer
     private var r_waktu_detik = 0L
+    private var resinNambah = 0L
     private var r_state =  ResinState.Stopped
 
     private var secondsRemaining = 0L
+    private var resinRemaining = 0L
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

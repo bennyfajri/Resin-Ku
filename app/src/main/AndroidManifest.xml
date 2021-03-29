@@ -12,9 +12,10 @@
         android:roundIcon="@drawable/icon_rounded"
         android:supportsRtl="true"
         android:theme="@style/Theme.ResinKu">
-        <activity android:name=".SplashScreen"
+        <activity android:name=".ActivityInfo"></activity>
+        <activity
+            android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,8 +50,7 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
