@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_Resin">
+    tools:context=".Fragment_Resin"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,14 +14,14 @@
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/progress_resin"
-            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
             android:layout_width="320dp"
             android:layout_height="320dp"
             android:layout_gravity="center"
             app:layout_constraintBottom_toTopOf="@id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/Widget.MaterialComponents.CircularProgressIndicator"/>
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -38,19 +39,21 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textResin"
+                android:id="@+id/tvResin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/resin_fragment"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:fontFamily="@font/poppins"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Fill in:" />
+                android:text="Fill in:"
+                android:fontFamily="@font/poppins"/>
 
             <TextView
                 android:id="@+id/resinCountdown"
@@ -58,14 +61,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="10.00"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/poppins"/>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:orientation="vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +81,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="Last resin" />
+                android:text="Last resin"
+                android:fontFamily="@font/poppins" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -87,7 +94,8 @@
                     android:layout_width="240dp"
                     android:layout_height="40dp"
                     android:hint="XX"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:fontFamily="@font/poppins"/>
 
                 <Button
                     android:id="@+id/rsn_btnSet"
@@ -97,7 +105,9 @@
                     android:layout_weight="1"
                     android:text="Set"
                     android:textSize="12sp"
-                    android:layout_gravity="end" />
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/poppins"
+                    android:textAllCaps="false"/>
 
             </FrameLayout>
 
@@ -106,8 +116,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-
                 <Button
                     android:id="@+id/rsn_btnSubmit"
                     style="@style/Widget.AppCompat.Button.Colored"
@@ -115,7 +123,9 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="Submit"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins"
+                    android:textAllCaps="false"/>
 
                 <Button
                     android:id="@+id/rsn_btnReset"
@@ -124,10 +134,12 @@
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="Reset"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:fontFamily="@font/poppins"
+                    android:textAllCaps="false"/>
             </LinearLayout>
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</ScrollView>

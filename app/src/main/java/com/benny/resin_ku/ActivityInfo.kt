@@ -17,9 +17,6 @@ class ActivityInfo : AppCompatActivity() {
         email.setOnClickListener{ v ->
             emailIntent()
         }
-        whatsapp.setOnClickListener { v ->
-            whatsappIntent()
-        }
         github.setOnClickListener{ v ->
             githubIntent()
         }
