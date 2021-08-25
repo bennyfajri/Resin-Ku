@@ -1,5 +1,6 @@
 package com.benny.resin_ku
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -75,6 +76,7 @@ class Fragment_Resin : Fragment() {
                 Toast.makeText(context, "Fill last resin first", Toast.LENGTH_LONG).show()
             }else{
                 jumlahResin = activity?.inputResin?.text.toString().toLong()
+
                 UtilResin.setTimerLength(jumlahResin,context)
                 setNewTimerLength()
 
@@ -83,6 +85,7 @@ class Fragment_Resin : Fragment() {
 
                 updateCountdownUI()
                 updateButtons()
+                tvResin.text = jumlahResin.toString()
             }
         }
         rsn_btnSubmit.setOnClickListener { v ->
@@ -149,15 +152,15 @@ class Fragment_Resin : Fragment() {
     private fun onTimerFinished() {
         r_state = ResinState.Stopped
 
-        setNewTimerLength()
-
         progress_resin.progress = 0
 
-        UtilResin.setSecondsRemaining(r_waktu_detik, context)
         secondsRemaining = r_waktu_detik
+        UtilResin.setSecondsRemaining(secondsRemaining, context)
 
         updateButtons()
         updateCountdownUI()
+        tvResin.text = "160"
+        resinCountdown.text = "0:00"
     }
 
     private fun startTimer() {
@@ -176,7 +179,7 @@ class Fragment_Resin : Fragment() {
 
     private fun setNewTimerLength() {
         val waktuResin = UtilResin.getTimerLengt(context) * 8
-        var lengthInMinutes = (160 * 8) - waktuResin
+        val lengthInMinutes = (160 * 8) - waktuResin
         r_waktu_detik = lengthInMinutes
         progress_resin.max = r_waktu_detik.toInt()
     }
@@ -186,10 +189,14 @@ class Fragment_Resin : Fragment() {
         progress_resin.max = r_waktu_detik.toInt()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateCountdownUI() {
+        val totalResin = 159
         val minutesUntilFinished = secondsRemaining / 60
         val secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60
         val secondStr = secondsInMinuteUntilFinished.toString()
+        val resin = totalResin - secondsRemaining / 8
+        tvResin.text = resin.toInt().toString()
         resinCountdown.text = "$minutesUntilFinished : ${
             if(secondStr.length == 2) secondStr
             else "0" + secondStr}"
