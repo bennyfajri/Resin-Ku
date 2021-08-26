@@ -52,7 +52,7 @@ class ResinNotificationUtil {
 
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, false)
             nBuilder.setContentTitle("Ad Astra Abyssosque!")
-                .setContentText("Resin telah di set, penuh pada pukul: ${df.format(Date(wakeUpTime))}")
+                .setContentText("Resin telah di Set, Berakhir dalam: ${df.format(Date(wakeUpTime))}")
 
                 .addAction(R.drawable.resin, "Stop", stopPendingIntent)
 
@@ -100,4 +100,4 @@ class ResinNotificationUtil {
             }
         }
     }
-} ///notif dalam suara klee atau other chara genshin
+}
