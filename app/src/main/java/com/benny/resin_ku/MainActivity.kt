@@ -1,28 +1,23 @@
  package com.benny.resin_ku
 
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-    private var content: FrameLayout? = null
+
+ class MainActivity : AppCompatActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_resin -> {
-                this.supportActionBar?.setTitle("Resin")
+                this.supportActionBar?.title = "Resin"
                 val fragment = Fragment_Resin.newInstance()
-                addFragment(fragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_maps -> {
-                this.supportActionBar?.setTitle("Maps")
-                val fragment = Fragment_Maps.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
@@ -47,12 +42,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.supportActionBar?.setTitle("Resin")
+        this.supportActionBar?.title = "Resin"
         val navigation: BottomNavigationView = findViewById(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.itemIconTintList = null
         val fragment = Fragment_Resin.newInstance()
         addFragment(fragment)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
