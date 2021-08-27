@@ -26,6 +26,9 @@ class ActivityInfo : AppCompatActivity() {
         instagram.setOnClickListener { v ->
             instagramIntent()
         }
+        icBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun emailIntent() {
@@ -39,20 +42,6 @@ class ActivityInfo : AppCompatActivity() {
             "Gmail App is not installed",
             Toast.LENGTH_SHORT
         ).show()
-    }
-
-    private fun whatsappIntent() {
-        val contact: String = "+6282335952153"
-        val url = "https://api.whatsapp.com/send?phone=$contact"
-        try{
-            val pm: PackageManager = this.getPackageManager()
-            pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            startActivity(i)
-        }catch (e: PackageManager.NameNotFoundException){
-            Toast.makeText(this, "Whatsapp app not installed in your phone", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun instagramIntent() {
