@@ -56,11 +56,9 @@ class Fragment_Resin : Fragment() {
     private var jumlahResin = 0L
     private lateinit var timer: CountDownTimer
     private var r_waktu_detik = 0L
-    private var resinNambah = 0L
     private var r_state =  ResinState.Stopped
 
     private var secondsRemaining = 0L
-    private var resinRemaining = 0L
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -71,11 +69,11 @@ class Fragment_Resin : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rsn_btnSet.setOnClickListener { v ->
-            val inputResin1 = inputResin.text.toString()
-            if(inputResin1.equals("") || TextUtils.isEmpty(inputResin1) || inputResin1.length == 0){
-                Toast.makeText(context, "Fill last resin first", Toast.LENGTH_LONG).show()
+            val resin = etInputResin.text.toString()
+            if(resin.isEmpty()){
+                etInputResin.error = "Input first"
             }else{
-                jumlahResin = activity?.inputResin?.text.toString().toLong()
+                jumlahResin = etInputResin.text.toString().toLong()
 
                 UtilResin.setTimerLength(jumlahResin,context)
                 setNewTimerLength()
@@ -86,6 +84,9 @@ class Fragment_Resin : Fragment() {
                 updateCountdownUI()
                 updateButtons()
                 tvResin.text = jumlahResin.toString()
+                etInputResin.setText("")
+                etInputResin.clearFocus()
+
             }
         }
         rsn_btnSubmit.setOnClickListener { v ->

@@ -1,7 +1,7 @@
 package com.benny.resin_ku.util
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.benny.resin_ku.Fragment_Resin
 
 class UtilResin {
