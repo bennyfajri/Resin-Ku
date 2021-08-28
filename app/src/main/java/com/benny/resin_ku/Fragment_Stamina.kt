@@ -96,6 +96,7 @@ class Fragment_Stamina : Fragment() {
         stm_btnReset.setOnClickListener { v ->
             timer.cancel()
             onTimerFinished()
+            tvStamina.text = "0"
         }
     }
 

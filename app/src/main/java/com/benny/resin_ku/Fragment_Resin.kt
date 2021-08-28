@@ -7,12 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.benny.resin_ku.util.ResinNotificationUtil
 import com.benny.resin_ku.util.UtilResin
 import kotlinx.android.synthetic.main.fragment_resin.*
@@ -84,7 +82,6 @@ class Fragment_Resin : Fragment() {
                 updateCountdownUI()
                 updateButtons()
                 tvResin.text = jumlahResin.toString()
-                etInputResin.setText("")
                 etInputResin.clearFocus()
 
             }
@@ -98,6 +95,7 @@ class Fragment_Resin : Fragment() {
         rsn_btnReset.setOnClickListener { v ->
             timer.cancel()
             onTimerFinished()
+            tvResin.text = "0"
         }
     }
 
