@@ -1,7 +1,7 @@
 package com.benny.resin_ku.util
 
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.benny.resin_ku.Fragment_Stamina
 
 class UtilStamina {
@@ -31,18 +31,6 @@ class UtilStamina {
             editor.apply()
         }
 
-//        private const val PREVIOUS_RESIN_REMAINING = "com.benny.stamina.stamina_remaining"
-//
-//        fun getPreviousResinRemaining(context: Context?): Long{
-//            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-//            return  preferences.getLong(PREVIOUS_RESIN_REMAINING, 0)
-//        }
-//
-//        fun setPreviousResinRemaining(resin: Long, context: Context?){
-//            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-//            editor.putLong(PREVIOUS_RESIN_REMAINING, resin)
-//            editor.apply()
-//        }
 
         private const val TIME_STATE_ID = "com.benny.stamina.timer_state"
 
@@ -59,7 +47,6 @@ class UtilStamina {
             editor.apply()
         }
 
-
         private const val SECOND_REMAINING_ID = "com.benny.stamina.seconds_remaining"
 
         fun getSecondRemaining(context: Context?): Long{
@@ -72,20 +59,6 @@ class UtilStamina {
             editor.putLong(SECOND_REMAINING_ID, seconds)
             editor.apply()
         }
-
-        private const val RESIN_REMAINING_ID = "com.benny.stamina.stamina_remaining"
-
-        fun getResinRemaining(context: Context?): Long{
-            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-            return  preferences.getLong(RESIN_REMAINING_ID, 0)
-        }
-
-        fun setResinRemaining(seconds: Long, context: Context?){
-            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-            editor.putLong(RESIN_REMAINING_ID, seconds)
-            editor.apply()
-        }
-
 
         private const val ALARM_SET_TIME_ID = "com.benny.stamina.backgrounded_time"
 

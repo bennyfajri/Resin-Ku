@@ -1,16 +1,15 @@
 package com.benny.resin_ku
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.benny.resin_ku.util.StaminaNotificationUtil
 import com.benny.resin_ku.util.UtilStamina
@@ -70,11 +69,12 @@ class Fragment_Stamina : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         stm_btnSet.setOnClickListener { v ->
-            val inputStamina1 = inputStamina.text.toString()
-            if(inputStamina1.equals("") || TextUtils.isEmpty(inputStamina1) || inputStamina1.length == 0){
-                Toast.makeText(context,"Fill last stamina  first", Toast.LENGTH_LONG).show()
+            val inputStamina = etInputStamina.text.toString()
+            if(inputStamina.isEmpty()){
+                etInputStamina.error = "Input first"
             }else{
-                jumlahStamina = inputStamina.text.toString().toLong()
+                jumlahStamina = inputStamina.toLong()
+
                 UtilStamina.setTimeLength(jumlahStamina,context)
                 setNewTimerLength()
 
@@ -83,11 +83,13 @@ class Fragment_Stamina : Fragment() {
 
                 updateCountdownUI()
                 updateButtons()
+                tvStamina.text = jumlahStamina.toString()
+                etInputStamina.clearFocus()
             }
         }
         stm_btnSubmit.setOnClickListener { v ->
                 startTimer()
-                s_state = Fragment_Stamina.StaminaState.Running
+                s_state = StaminaState.Running
                 updateButtons()
         }
 
@@ -102,7 +104,7 @@ class Fragment_Stamina : Fragment() {
 
         initTimer()
 
-        Fragment_Stamina.removeAlarm(context)
+        removeAlarm(context)
         StaminaNotificationUtil.hideTimerNotification(context)
     }
 
@@ -111,7 +113,7 @@ class Fragment_Stamina : Fragment() {
 
         if(s_state == StaminaState.Running){
             timer.cancel()
-            val wakeUpTime = Fragment_Stamina.setAlarm(context, nowSeconds, secondsRemaining)
+            val wakeUpTime = setAlarm(context, nowSeconds, secondsRemaining)
             StaminaNotificationUtil.showStaminaRunning(context, wakeUpTime)
         }
         UtilStamina.setPreviousTimerLengthSeconds(s_waktu_detik, context)
@@ -157,6 +159,8 @@ class Fragment_Stamina : Fragment() {
 
         updateButtons()
         updateCountdownUI()
+        tvStamina.text = "166"
+        staminaCountdown.text = "0:00"
     }
 
     private fun startTimer() {
@@ -174,8 +178,8 @@ class Fragment_Stamina : Fragment() {
     }
 
     private fun setNewTimerLength() {
-        val waktuStamina = UtilStamina.getTimeLength(context) * 8
-        var lengthInMinutes = (160 * 8) - waktuStamina
+        val waktuStamina = UtilStamina.getTimeLength(context) * 6
+        var lengthInMinutes = (166 * 6) - waktuStamina
         s_waktu_detik = lengthInMinutes
         progress_stamina.max = s_waktu_detik.toInt()
     }
@@ -185,13 +189,18 @@ class Fragment_Stamina : Fragment() {
         progress_stamina.max = s_waktu_detik.toInt()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateCountdownUI() {
+        val totalStamina = 165
         val minutesUntilFinished = secondsRemaining / 60
         val secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60
         val secondStr = secondsInMinuteUntilFinished.toString()
+        val stamina = totalStamina - secondsRemaining / 6
+        tvStamina.text = stamina.toString()
         staminaCountdown.text = "$minutesUntilFinished : ${
             if(secondStr.length == 2) secondStr
-            else "0" + secondStr}"
+            else "0$secondStr"
+        }"
         progress_stamina.progress = (s_waktu_detik - secondsRemaining).toInt()
     }
 
