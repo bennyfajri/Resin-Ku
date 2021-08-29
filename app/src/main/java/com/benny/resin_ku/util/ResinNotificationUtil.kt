@@ -50,8 +50,8 @@ class ResinNotificationUtil {
 
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, false)
             nBuilder.setContentTitle("Ad Astra Abyssosque!")
-                .setContentText("Resin telah diset, penuh pada pukul: ${df.format(Date(wakeUpTime))}")
                 .addAction(R.drawable.resin, "Stop", stopPendingIntent)
+                .setContentText("Resin telah diset, penuh pada pukul: ${df.format(Date(wakeUpTime))}")
                 .setContentIntent(getPendingIntentWithStack(context, MainActivity::class.java))
 
             val nManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

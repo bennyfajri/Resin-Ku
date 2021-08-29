@@ -11,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import android.text.TextUtils
+import android.widget.Toast
 import com.benny.resin_ku.util.StaminaNotificationUtil
 import com.benny.resin_ku.util.UtilStamina
 import kotlinx.android.synthetic.main.fragment__stamina.*
