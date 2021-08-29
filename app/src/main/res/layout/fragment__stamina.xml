@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_Resin"
-    android:fillViewport="true">
+    tools:context=".Fragment_Resin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/progress_stamina"
+            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
             android:layout_width="320dp"
             android:layout_height="320dp"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/stamina"
             app:layout_constraintBottom_toTopOf="@id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/Widget.MaterialComponents.CircularProgressIndicator"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -40,124 +38,93 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="Current stamina" />
-
-            <TextView
-                android:id="@+id/tvStamina"
+                android:id="@+id/textStamina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                tools:text="0"
-                android:textSize="40sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins"/>
+                android:text="@string/stamina_fragment"
+                android:textSize="32sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Fill in"
-                android:fontFamily="@font/poppins_light"/>
+                android:text="Fill in:" />
 
             <TextView
                 android:id="@+id/staminaCountdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="10.00"
-                android:textSize="24sp"
-                android:fontFamily="@font/poppins"/>
+                android:layout_marginTop="8dp"
+                android:text="10.00"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="120dp"
             android:orientation="vertical"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_marginStart="4dp"
+                android:text="Last stamina" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Last Resin"
-                    style="@style/MyDenseOutlined"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    android:layout_toStartOf="@id/stm_btnSet">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etInputStamina"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:fontFamily="@font/poppins"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/inputStamina"
+                    android:layout_width="240dp"
+                    android:layout_height="40dp"
+                    android:hint="XX"
+                    android:inputType="number"/>
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/stm_btnSet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="Set"
-                    app:cornerRadius="8dp"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="60dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:text="set"
                     android:textSize="12sp"
-                    android:layout_gravity="end"
-                    android:fontFamily="@font/poppins"
-                    android:textAllCaps="false"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="4dp"/>
+                    android:layout_gravity="end"/>
+            </FrameLayout>
 
-            </RelativeLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="20dp">
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/stm_btnSubmit"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="Submit"
-                    app:cornerRadius="8dp"
-                    android:textSize="12sp"
-                    android:layout_marginEnd="2dp"
-                    android:fontFamily="@font/poppins"
-                    android:textAllCaps="false"/>
+                    android:textSize="12sp" />
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/stm_btnReset"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:text="Reset"
-                    app:cornerRadius="8dp"
-                    android:textSize="12sp"
-                    android:layout_marginStart="2dp"
-                    android:fontFamily="@font/poppins"
-                    android:textAllCaps="false"/>
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</FrameLayout>

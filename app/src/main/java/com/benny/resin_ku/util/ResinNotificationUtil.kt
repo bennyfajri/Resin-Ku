@@ -12,7 +12,10 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.benny.resin_ku.*
+import com.benny.resin_ku.Fragment_Resin
+import com.benny.resin_ku.R
+import com.benny.resin_ku.ResinConstants
+import com.benny.resin_ku.ResinNotificationActionReceiver
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,7 +35,6 @@ class ResinNotificationUtil {
             nBuilder.setContentTitle("Ad Astra Abyssosque!")
                 .setContentText("Petualang, resin telah penuh.")
                 .addAction(R.drawable.resin, "Dismiss", startPendingIntent)
-                .setContentIntent(getPendingIntentWithStack(context, MainActivity::class.java))
 
             val nManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
@@ -50,9 +52,9 @@ class ResinNotificationUtil {
 
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, false)
             nBuilder.setContentTitle("Ad Astra Abyssosque!")
-                .setContentText("Resin telah diset, penuh pada pukul: ${df.format(Date(wakeUpTime))}")
+                .setContentText("Resin telah di Set, Berakhir dalam: ${df.format(Date(wakeUpTime))}")
+
                 .addAction(R.drawable.resin, "Stop", stopPendingIntent)
-                .setContentIntent(getPendingIntentWithStack(context, MainActivity::class.java))
 
             val nManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, false)
