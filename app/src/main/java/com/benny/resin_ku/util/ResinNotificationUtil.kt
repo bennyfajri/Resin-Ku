@@ -17,17 +17,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ResinNotificationUtil {
-    companion object{
+    companion object {
         private const val CHANNEL_ID_TIMER = "menu_resin"
         private const val CHANNEL_NAME_TIMER = "Time Resin Timer"
         var rnds = (1..1000).random()
         private var RESIN_ID = rnds
 
-        fun showResinExpired(context: Context?){
+        fun showResinExpired(context: Context?) {
             val startIntent = Intent(context, ResinNotificationActionReceiver::class.java)
             startIntent.action = ResinConstants.ACTION_START
             val startPendingIntent = PendingIntent.getBroadcast(context,
-                0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+                    0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT)
             val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
             nBuilder.setContentTitle("Ad Astra Abyssosque!")
                     .setContentText("Petualang, resin telah penuh.")
@@ -40,11 +40,11 @@ class ResinNotificationUtil {
             nManager.notify(RESIN_ID, nBuilder.build())
         }
 
-        fun showResinRunning(context: Context?, wakeUpTime: Long){
+        fun showResinRunning(context: Context?, wakeUpTime: Long) {
             val stopIntent = Intent(context, ResinNotificationActionReceiver::class.java)
             stopIntent.action = ResinConstants.ACTION_STOP
             val stopPendingIntent = PendingIntent.getBroadcast(context,
-                0, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+                    0, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val df = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT)
 
@@ -60,7 +60,7 @@ class ResinNotificationUtil {
             nManager.notify(RESIN_ID, nBuilder.build())
         }
 
-        fun hideTimerNotification(context: Context?){
+        fun hideTimerNotification(context: Context?) {
             val nManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.cancel(RESIN_ID)
         }
@@ -68,9 +68,9 @@ class ResinNotificationUtil {
         private fun getBasicNotificationBuilder(context: Context?, channelId: String, playSound: Boolean): NotificationCompat.Builder {
             val notificationSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             val nBuilder = NotificationCompat.Builder(context!!, channelId)
-                .setSmallIcon(R.drawable.resin)
-                .setAutoCancel(true)
-                .setDefaults(0)
+                    .setSmallIcon(R.drawable.resin)
+                    .setAutoCancel(true)
+                    .setDefaults(0)
             if (playSound) nBuilder.setSound(notificationSound)
             return nBuilder
         }
@@ -83,12 +83,12 @@ class ResinNotificationUtil {
             stackBuilder.addParentStack(javaClass)
             stackBuilder.addNextIntent(resultIntent)
 
-            return  stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+            return stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         @TargetApi(26)
-        private  fun NotificationManager.createNotificationChannel(channelID: String, channelName: String, playSound: Boolean){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        private fun NotificationManager.createNotificationChannel(channelID: String, channelName: String, playSound: Boolean) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channelImportance = if (playSound) NotificationManager.IMPORTANCE_DEFAULT
                 else NotificationManager.IMPORTANCE_LOW
                 val nChannel = NotificationChannel(channelID, channelName, channelImportance)
