@@ -7,11 +7,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.benny.resin_ku.util.StaminaNotificationUtil
 import com.benny.resin_ku.util.UtilStamina
 import kotlinx.android.synthetic.main.fragment__stamina.*
@@ -20,7 +20,7 @@ import java.util.*
 class Fragment_Stamina : Fragment() {
 
     companion object {
-        fun newInstance(): Fragment{
+        fun newInstance(): androidx.fragment.app.Fragment {
             val fragment = Fragment_Stamina()
             val args = Bundle()
             fragment.arguments = args

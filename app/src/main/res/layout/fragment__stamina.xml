@@ -83,12 +83,10 @@
 
                 <EditText
                     android:id="@+id/inputStamina"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="40dp"
                     android:hint="XX"
-                    android:inputType="number"
-                    android:textColor="@color/black"/>
+                    android:inputType="number"/>
 
                 <Button
                     android:id="@+id/stm_btnSet"
