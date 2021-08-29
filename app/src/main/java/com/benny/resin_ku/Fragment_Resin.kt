@@ -7,12 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.benny.resin_ku.util.ResinNotificationUtil
 import com.benny.resin_ku.util.UtilResin
 import kotlinx.android.synthetic.main.fragment_resin.*
@@ -56,11 +54,9 @@ class Fragment_Resin : Fragment() {
     private var jumlahResin = 0L
     private lateinit var timer: CountDownTimer
     private var r_waktu_detik = 0L
-    private var resinNambah = 0L
     private var r_state =  ResinState.Stopped
 
     private var secondsRemaining = 0L
-    private var resinRemaining = 0L
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -71,11 +67,11 @@ class Fragment_Resin : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         rsn_btnSet.setOnClickListener { v ->
-            val inputResin1 = inputResin.text.toString()
-            if(inputResin1.equals("") || TextUtils.isEmpty(inputResin1) || inputResin1.length == 0){
-                Toast.makeText(context, "Fill last resin first", Toast.LENGTH_LONG).show()
+            val resin = etInputResin.text.toString()
+            if(resin.isEmpty()){
+                etInputResin.error = "Input first"
             }else{
-                jumlahResin = activity?.inputResin?.text.toString().toLong()
+                jumlahResin = etInputResin.text.toString().toLong()
 
                 UtilResin.setTimerLength(jumlahResin,context)
                 setNewTimerLength()
@@ -86,6 +82,8 @@ class Fragment_Resin : Fragment() {
                 updateCountdownUI()
                 updateButtons()
                 tvResin.text = jumlahResin.toString()
+                etInputResin.clearFocus()
+
             }
         }
         rsn_btnSubmit.setOnClickListener { v ->
@@ -97,6 +95,7 @@ class Fragment_Resin : Fragment() {
         rsn_btnReset.setOnClickListener { v ->
             timer.cancel()
             onTimerFinished()
+            tvResin.text = "0"
         }
     }
 

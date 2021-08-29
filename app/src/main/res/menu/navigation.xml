@@ -3,17 +3,12 @@
 
     <item
         android:id="@+id/navigation_resin"
-        android:icon="@drawable/resin"
+        android:icon="@drawable/resin_selector"
         android:title="Resin" />
 
     <item
-        android:id="@+id/navigation_maps"
-        android:icon="@drawable/maps"
-        android:title="Maps" />
-
-    <item
         android:id="@+id/navigation_stamina"
-        android:icon="@drawable/stamina"
+        android:icon="@drawable/stamina_selector"
         android:title="Stamina" />
 
 </menu>
