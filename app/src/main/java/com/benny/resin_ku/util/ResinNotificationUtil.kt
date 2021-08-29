@@ -53,6 +53,7 @@ class ResinNotificationUtil {
                     .setContentIntent(getPendingIntentWithStack(context, MainActivity::class.java))
                     .addAction(R.drawable.resin, "Stop", stopPendingIntent)
                     .setContentText("Resin telah diset, penuh pada pukul: ${df.format(Date(wakeUpTime))}")
+            
             val nManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, false)
 
