@@ -17,11 +17,11 @@ import kotlinx.android.synthetic.main.fragment_resin.*
 import java.util.*
 
 
-class Fragment_Resin : Fragment() {
+class FragmentResin : Fragment() {
 
     companion object {
         fun newInstance(): Fragment{
-            val fragment = Fragment_Resin()
+            val fragment = FragmentResin()
             val args = Bundle()
             fragment.arguments = args
             return fragment
