@@ -17,11 +17,11 @@ import com.benny.resin_ku.util.UtilStamina
 import kotlinx.android.synthetic.main.fragment__stamina.*
 import java.util.*
 
-class Fragment_Stamina : Fragment() {
+class FragmentStamina : Fragment() {
 
     companion object {
-        fun newInstance(): androidx.fragment.app.Fragment {
-            val fragment = Fragment_Stamina()
+        fun newInstance(): Fragment {
+            val fragment = FragmentStamina()
             val args = Bundle()
             fragment.arguments = args
             return fragment
@@ -87,7 +87,7 @@ class Fragment_Stamina : Fragment() {
         }
         stm_btnSubmit.setOnClickListener { v ->
                 startTimer()
-                s_state = Fragment_Stamina.StaminaState.Running
+                s_state = StaminaState.Running
                 updateButtons()
         }
 
@@ -102,7 +102,7 @@ class Fragment_Stamina : Fragment() {
 
         initTimer()
 
-        Fragment_Stamina.removeAlarm(context)
+        removeAlarm(context)
         StaminaNotificationUtil.hideTimerNotification(context)
     }
 
@@ -111,7 +111,7 @@ class Fragment_Stamina : Fragment() {
 
         if(s_state == StaminaState.Running){
             timer.cancel()
-            val wakeUpTime = Fragment_Stamina.setAlarm(context, nowSeconds, secondsRemaining)
+            val wakeUpTime = setAlarm(context, nowSeconds, secondsRemaining)
             StaminaNotificationUtil.showStaminaRunning(context, wakeUpTime)
         }
         UtilStamina.setPreviousTimerLengthSeconds(s_waktu_detik, context)
